@@ -1,0 +1,52 @@
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:padding="16dp"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+
+
+    <TextView
+        android:id="@+id/cardShowForm"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="16dp"
+        android:layout_marginBottom="16dp"
+        android:text="Agregar nuevo socio"
+        android:textSize="18sp"
+        android:textColor="#000"
+        android:background="@android:drawable/dialog_holo_light_frame"
+        android:clickable="true"
+        android:focusable="true" />
+
+
+    <!-- Formulario oculto inicialmente -->
+    <LinearLayout
+        android:id="@+id/formLayout"
+        android:orientation="vertical"
+        android:visibility="gone"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <EditText
+            android:id="@+id/editNombre"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Nombre" />
+
+        <EditText
+            android:id="@+id/editDNI"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="DNI"
+            android:inputType="number" />
+
+        <Button
+            android:id="@+id/btnGuardar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Guardar socio" />
+    </LinearLayout>
+
+</LinearLayout>

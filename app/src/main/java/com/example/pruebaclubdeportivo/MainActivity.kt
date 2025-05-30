@@ -1,6 +1,8 @@
 package com.example.pruebaclubdeportivo
 
+import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.widget.Button
 import android.widget.EditText
 import android.widget.Toast
@@ -28,6 +30,8 @@ class MainActivity : AppCompatActivity() {
             val p = pass.text.toString().trim()
             if (dbHelper.login(u, p)) {
                 Toast.makeText(this, "Bienvenido $u", Toast.LENGTH_SHORT).show()
+                val intent = Intent(this, MenuActivity::class.java)
+                startActivity(intent)
             } else {
                 Toast.makeText(this, "Usuario o contraseña incorrectos", Toast.LENGTH_SHORT).show()
             }
