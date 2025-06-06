@@ -56,5 +56,26 @@ class UserDBHelper(context: Context) : SQLiteOpenHelper(context, "ClubDB", null,
         val resultado = db.insert("socios", null, valores)
         return resultado != -1L
     }
+
+    fun obtenerSocios():List<String>{
+        val socios = mutableListOf<String>()
+        val db = readableDatabase
+        val cursor = db.rawQuery("SELECT nombre, dni FROM socios", null)
+        if(cursor.moveToFirst()) {
+            do{
+                val nombre = cursor.getString(0)
+                val dni = cursor.getString(1)
+                socios.add("$nombre - $dni")
+            } while(cursor.moveToNext())
+
+        }
+        cursor.close()
+        return socios
+    }
 }
+
+//////             nombre        dni
+
+/////              juan          1111111
+
 
