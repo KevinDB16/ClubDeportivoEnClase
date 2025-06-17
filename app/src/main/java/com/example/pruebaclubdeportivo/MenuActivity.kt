@@ -1,5 +1,6 @@
 package com.example.pruebaclubdeportivo
 
+import android.app.AlertDialog
 import android.content.Intent
 import android.os.Bundle
 import android.view.View
@@ -56,10 +57,28 @@ class MenuActivity : AppCompatActivity() {
             }
         }
 
-    private fun mostrarSocios(){
-      val listView = findViewById<ListView>(R.id.listSocios)
-      val lista =  dbHelper.obtenerSocios()
-      val adapter = ArrayAdapter(this, android.R.layout.simple_list_item_1, lista)
-      listView.adapter = adapter
-    }
+    private fun mostrarSocios() {
+        val listView = findViewById<ListView>(R.id.listSocios)
+        val lista = dbHelper.obtenerSocios()
+        val adapter = ArrayAdapter(this, android.R.layout.simple_list_item_1, lista)
+        listView.adapter = adapter
+
+        listView.setOnItemLongClickListener { _, _, position, _ ->
+          val item = lista[position]
+          val dni = item.substringAfterLast("-").trim()
+
+          AlertDialog.Builder(this)
+              .setTitle("Eliminar")
+              .setMessage("¿Estás seguro de eliminar al socio: $item")
+              .setPositiveButton("Si"){ _, _ ->
+                  dbHelper.eliminarSocioPorDni(dni)
+                  mostrarSocios()
+                  Toast.makeText(this, "Socio eliminado", Toast.LENGTH_SHORT).show()
+              }
+              .setNegativeButton("no", null)
+              .show()
+            true
+        }   // Juan Pérez -         36666552
+
+      }
     }
